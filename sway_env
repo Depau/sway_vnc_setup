@@ -1,0 +1,14 @@
+function steal_env() {
+  # Steal environment from processes running in Sway
+  for proc in "Xwayland" "swayidle" "swaybg" "swaybar" "waybar"; do
+    for pid in $(pgrep "$proc"); do
+      cat "/proc/${pid}/environ" | tr '\0' '\n' | grep -aEq '^SWAYSOCK=' || continue
+      source <(grep -zaE '^SWAYSOCK=|I3SOCK=|WAYLAND_DISPLAY=|DISPLAY=' "/proc/${pid}/environ" | sed -r -e 's/([^\x00]*)\x00/export \1\n/g')
+      return
+    done
+  done
+}
+
+if [[ "$SWAYSOCK" == '' ]]; then
+  steal_env
+fi
