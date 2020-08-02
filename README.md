@@ -19,4 +19,6 @@ the output manager Wayland protocol you can send me a pull request.
 
 The repo includes a `sway_env` and `sway_env.fish` script that automates "stealing"
 the environment variables from programs running under Sway to be able to run `swaymsg`
-from SSH
+from SSH.
+
+You can source it from a shell to have the needed variables exported.
