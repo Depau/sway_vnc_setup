@@ -4,9 +4,10 @@ Simple script to aid bringing up a VNC server for Sway, remotely.
 
 ## Dependencies
 
-- dialog (cdialog)
-- wayvnc
-- jq
+- dialog (cdialog, terminal UI)
+- wayvnc (VNC server)
+- jq (for parsing swaymsg output)
+- iproute2 (for listen address choices)
 - sway (of course)
 
 Since it uses `swaymsg` to probe for displays, it is only compatible with Sway.
